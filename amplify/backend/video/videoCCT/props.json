@@ -27,11 +27,7 @@
     },
     "permissions": {
         "permissionSchema": [
-            "admin"
+            "any"
         ]
-    },
-    "cms": {
-        "overrideSchema": true,
-        "editAPI": false
     }
 }

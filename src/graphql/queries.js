@@ -6,10 +6,11 @@ export const getFile = /* GraphQL */ `
     getFile(id: $id) {
       id
       name
+      type
       filePath
-      owner
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -23,10 +24,11 @@ export const listFiles = /* GraphQL */ `
       items {
         id
         name
+        type
         filePath
-        owner
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -42,9 +44,11 @@ export const getVodAsset = /* GraphQL */ `
         id
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -63,9 +67,11 @@ export const listVodAssets = /* GraphQL */ `
           id
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -77,6 +83,7 @@ export const getVideoObject = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -91,6 +98,7 @@ export const listVideoObjects = /* GraphQL */ `
         id
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

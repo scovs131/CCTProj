@@ -2,16 +2,13 @@
 type File @model @auth(rules: [{ allow: owner, operations: [create, delete, update] }]) {
   id: ID!
   name: String!
+  type: String!
   filePath: String!
-  owner: String!
 }
 
 type vodAsset @model (subscriptions: {level: public})
 @auth(
-  rules: [
-    {allow: groups, groups:["Admin"], operations: [create, update, delete, read]},
-    {allow: private, operations: [read]}
-  ]
+  rules: [{ allow: owner, operations: [create, delete, update] }]
 )
 {
   id:ID!
@@ -25,10 +22,7 @@ type vodAsset @model (subscriptions: {level: public})
 #DO NOT EDIT
 type videoObject @model
 @auth(
-  rules: [
-    {allow: groups, groups:["Admin"], operations: [create, update, delete, read]},
-    {allow: private, operations: [read]}
-  ]
+  rules: [{ allow: owner, operations: [create, delete, update] }]
 )
 {
   id:ID!

@@ -2,7 +2,8 @@
 
 const awsvideoconfig = {
     "awsInputVideo": "videocct-staging-input-inbalrbj",
-    "awsOutputVideo": "videocct-staging-output-inbalrbj.s3.ap-southeast-1.amazonaws.com"
+    "awsOutputVideo": "videocct-staging-output-inbalrbj.s3.ap-southeast-1.amazonaws.com",
+    "awsInputFile": "filebucket124830-staging.s3-ap-southeast-1.amazonaws.com"
 };
 
 export default awsvideoconfig;

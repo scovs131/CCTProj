@@ -6,10 +6,11 @@ export const onCreateFile = /* GraphQL */ `
     onCreateFile {
       id
       name
+      type
       filePath
-      owner
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -18,10 +19,11 @@ export const onUpdateFile = /* GraphQL */ `
     onUpdateFile {
       id
       name
+      type
       filePath
-      owner
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -30,10 +32,11 @@ export const onDeleteFile = /* GraphQL */ `
     onDeleteFile {
       id
       name
+      type
       filePath
-      owner
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -47,9 +50,11 @@ export const onCreateVodAsset = /* GraphQL */ `
         id
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -63,9 +68,11 @@ export const onUpdateVodAsset = /* GraphQL */ `
         id
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -79,9 +86,11 @@ export const onDeleteVodAsset = /* GraphQL */ `
         id
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -91,6 +100,7 @@ export const onCreateVideoObject = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -100,6 +110,7 @@ export const onUpdateVideoObject = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -109,6 +120,7 @@ export const onDeleteVideoObject = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      owner
     }
   }
 `;
