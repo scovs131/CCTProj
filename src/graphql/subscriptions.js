@@ -8,6 +8,7 @@ export const onCreateFile = /* GraphQL */ `
       name
       type
       filePath
+      ownerName
       createdAt
       updatedAt
       owner
@@ -21,6 +22,7 @@ export const onUpdateFile = /* GraphQL */ `
       name
       type
       filePath
+      ownerName
       createdAt
       updatedAt
       owner
@@ -34,6 +36,7 @@ export const onDeleteFile = /* GraphQL */ `
       name
       type
       filePath
+      ownerName
       createdAt
       updatedAt
       owner

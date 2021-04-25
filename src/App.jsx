@@ -14,6 +14,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import awsvideo from './aws-video-exports';
 import { v4 as uuidv4 } from 'uuid';
 import ReactHlsPlayer from 'react-hls-player';
+import moment from 'moment';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
       const fileData = await API.graphql(graphqlOperation(listFiles));
       const fileList = fileData.data.listFiles.items;
       setFiles(fileList);
+      console.log("Fetching Done!");
 
     } catch (error) {
       console.log('error on fetching files', error);
@@ -89,8 +91,8 @@ function App() {
         {
           showAddFile ? (
             <AddFile onUpload = {() => {
-              setShowAddFile(false)
-              fetchFiles()
+              setShowAddFile(false);
+              fetchFiles();
             }}/>
           ): <IconButton onClick={() => setShowAddFile(true)}>
               <AddIcon />
@@ -101,7 +103,8 @@ function App() {
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
                 <div className="column"><div className="fileName">{file.name}</div></div>
-                <div className="column"><div className="fileUpdated">{file.updatedAt}</div></div>
+                <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
+                <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
                 <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
                       {file.type === "video" ? 
                         (
@@ -169,6 +172,7 @@ const AddFile = ({onUpload}) =>{
                 id: uuidv4(),
                 name: fileName,
                 type: type,
+                ownerName: Auth.user.attributes.email,
                 filePath: `https://${awsvideo.awsOutputVideo}/${uuid}/${uuid}.m3u8`,
               }
               console.log(createFileInput);
@@ -189,6 +193,7 @@ const AddFile = ({onUpload}) =>{
             id: uuidv4(),
             name: fileName,
             type: type,
+            ownerName: Auth.user.attributes.email,
             filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
           }
           console.log(createFileInput);

@@ -8,6 +8,7 @@ export const getFile = /* GraphQL */ `
       name
       type
       filePath
+      ownerName
       createdAt
       updatedAt
       owner
@@ -26,6 +27,7 @@ export const listFiles = /* GraphQL */ `
         name
         type
         filePath
+        ownerName
         createdAt
         updatedAt
         owner

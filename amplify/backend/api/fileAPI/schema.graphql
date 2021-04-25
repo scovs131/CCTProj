@@ -4,6 +4,7 @@ type File @model @auth(rules: [{ allow: owner, operations: [create, delete, upda
   name: String!
   type: String!
   filePath: String!
+  ownerName: String!
 }
 
 type vodAsset @model (subscriptions: {level: public})
