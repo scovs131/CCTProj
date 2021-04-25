@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-import { Amplify, Auth, API, graphqlOperation, Storage } from 'aws-amplify';
-import { listFiles, listVodAssets } from './graphql/queries';
+import { Auth, API, graphqlOperation, Storage } from 'aws-amplify';
+import { listFiles } from './graphql/queries';
 import { createVodAsset, createVideoObject, createFile } from './graphql/mutations';
-import { IconButton, Paper, TextField } from '@material-ui/core';
+import { IconButton, Paper } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -13,12 +13,14 @@ import AddIcon from '@material-ui/icons/Add';
 import PublishIcon from '@material-ui/icons/Publish';
 import awsvideo from './aws-video-exports';
 import { v4 as uuidv4 } from 'uuid';
+import ReactHlsPlayer from 'react-hls-player';
 
 function App() {
 
   const [files, setFiles] = useState([]);
   const [showAddFile, setShowAddFile] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState("");
+  const [videoSrc, setVideoSrc] = useState("");
 
   useEffect(() => {
     fetchFiles();
@@ -30,7 +32,6 @@ function App() {
 
       const fileData = await API.graphql(graphqlOperation(listFiles));
       const fileList = fileData.data.listFiles.items;
-      console.log('file list', fileList);
       setFiles(fileList);
 
     } catch (error) {
@@ -56,17 +57,19 @@ function App() {
     try {
 
       const file = files[idx];
-      if(file.type != "video"){
+      if(file.type !== "video"){
         const fileAccessURL = await Storage.get(file.filePath, { expires: 60 });
         window.open(fileAccessURL, "_blank");
       } else {
-        console.log("video");
         if(videoPlaying === idx) {
           setVideoPlaying("");
+          setVideoSrc("");
           return
         }
         setVideoPlaying(idx);
-          return
+        setVideoSrc(file.filePath);
+        
+        return
       }
 
     } catch (error) {
@@ -97,20 +100,21 @@ function App() {
           return (
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
-                <div className="fileName">{file.name}</div>
-                <div className="fileUpdated">{file.updatedAt}</div>
-                <IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
-                  {file.type === "video" ? 
-                    (
-                      videoPlaying !== idx ? <PlayArrowIcon /> : <PauseIcon />
-                    ) : <GetAppIcon /> 
-                  }
-                </IconButton>
-              </div>
+                <div className="column"><div className="fileName">{file.name}</div></div>
+                <div className="column"><div className="fileUpdated">{file.updatedAt}</div></div>
+                <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
+                      {file.type === "video" ? 
+                        (
+                          videoPlaying !== idx ? <PlayArrowIcon /> : <PauseIcon />
+                        ) : <GetAppIcon /> 
+                      }
+                    </IconButton>
+                  </div>
+                </div>
               {
                 videoPlaying === idx ? (
                   <div>
-                    <h2>{videoPlaying}</h2>
+                    <ReactHlsPlayer src = {videoSrc} autoPlay={false} controls={true} width="auto" height="auto"/>
                   </div>
                 ) : null
               }
@@ -142,11 +146,11 @@ const AddFile = ({onUpload}) =>{
     const fileType = fileExtension[fileExtension.length - 1];
     
     var type = "file";
-    if(fileType == "mp4"){
+    if(fileType === "mp4"){
       type = "video";
     }
 
-    if(type == "video"){
+    if(type === "video"){
 
       API.graphql(graphqlOperation(createVideoObject, videoObject)).then((response, error) => {
         if (error === undefined) {
