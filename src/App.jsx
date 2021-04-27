@@ -9,6 +9,7 @@ import { IconButton, Paper } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import PublishIcon from '@material-ui/icons/Publish';
 import awsvideo from './aws-video-exports';
@@ -112,7 +113,7 @@ function App() {
                 <div className="column"><div className="fileName">{file.name}</div></div>
                 <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
                 <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
-                <div className="column"><IconButton aria-label = "download"><GetAppIcon/></IconButton></div>
+                <div className="column"><IconButton aria-label = "delete"><DeleteIcon/></IconButton></div>
                 <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
                       {file.type === "video" ? 
                         (
