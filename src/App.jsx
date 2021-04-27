@@ -80,6 +80,13 @@ function App() {
 
   }
 
+  const removeFile = async (idx) => {
+    try {
+      const file = files[idx];
+
+    }
+
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -113,6 +120,7 @@ function App() {
                       }
                     </IconButton>
                   </div>
+                <div className="column"><IconButton aria-label = "download"/></div>
                 </div>
               {
                 videoPlaying === idx ? (
