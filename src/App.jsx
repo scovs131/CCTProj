@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import { Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import { listFiles } from './graphql/queries';
-import { createVodAsset, createVideoObject, createFile } from './graphql/mutations';
+import { createVodAsset, createVideoObject, createFile, deleteFile } from './graphql/mutations';
 import { IconButton, Paper } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
@@ -84,7 +84,16 @@ function App() {
   const removeFile = async (file) => {
     alert(file.filePath);
     try {
-      await Storage.remove(file.filePath);
+      await Storage.remove(file.filePath).then(() => {
+        const deleteFileInput = {
+          id: file.filePath,
+          // name: fileName,
+          // type: type,
+          // ownerName: Auth.user.attributes.email,
+          // filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
+        };
+        API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
+      });
     } catch(error) {
       alert('remove error');
     }
