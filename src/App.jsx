@@ -112,7 +112,7 @@ function App() {
                 <div className="column"><div className="fileName">{file.name}</div></div>
                 <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
                 <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
-                <div className="column"><IconButton aria-label = "download"/></div>
+                <div className="column"><IconButton aria-label = "download"><GetAppIcon/></IconButton></div>
                 <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
                       {file.type === "video" ? 
                         (
