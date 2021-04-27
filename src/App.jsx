@@ -84,7 +84,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h3>{Auth.user.attributes.username}</h3>
+        <h3>{Auth.user.attributes.name}</h3>
         <AmplifySignOut />
       </header>
       <div className="fileList">
@@ -98,7 +98,7 @@ function App() {
               <AddIcon />
             </IconButton>
         }
-        { files.map( (file, idx) => {
+        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*/.map( (file, idx) => {
           return (
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
