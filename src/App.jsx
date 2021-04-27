@@ -84,7 +84,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h3>{Auth.user.attributes.email}</h3>
+        <h3>{Auth.user.attributes.username}</h3>
         <AmplifySignOut />
       </header>
       <div className="fileList">
