@@ -82,7 +82,7 @@ function App() {
   }
 
   const removeFile = async (file) => {
-    alert('pass');
+    alert(file.name);
     // try {
     //   await Storage.remove(file.name);
     // } catch(error) {
