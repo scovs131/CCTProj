@@ -82,7 +82,7 @@ function App() {
   }
 
   const removeFile = async (file) => {
-    alert(file.filePath);
+    // alert(file.filePath);
     // try {
       await Storage.remove(file.filePath).then(() => {
         const deleteFileInput = {
