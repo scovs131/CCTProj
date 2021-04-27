@@ -82,12 +82,12 @@ function App() {
   }
 
   const removeFile = async (file) => {
-    try {
-      await Storage.remove(file.name);
-
-    } catch(error) {
-      console.log('error removing file')
-    }
+    alert('pass');
+    // try {
+    //   await Storage.remove(file.name);
+    // } catch(error) {
+    //   console.log('error removing file')
+    // }
 
   }
   return (
