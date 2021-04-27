@@ -80,13 +80,13 @@ function App() {
 
   }
 
-  const removeFile = async (idx) => {
-    try {
-      const file = files[idx];
+  // const removeFile = async (idx) => {
+  //   try {
+  //     const file = files[idx];
 
-    }
+  //   }
 
-  }
+  // }
   return (
     <div className="App">
       <header className="App-header">
