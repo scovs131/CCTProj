@@ -97,7 +97,6 @@ function App() {
     // } catch(error) {
       // alert('remove error');
     }
-  }
 
   return (
     <div className="App">
