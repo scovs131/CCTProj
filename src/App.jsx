@@ -82,21 +82,14 @@ function App() {
   }
 
   const removeFile = async (file) => {
-    alert(file.filePath);
-    // try {
+    try {
       await Storage.remove(file.filePath).then(() => {
-        const deleteFileInput = {
-          id: file.filePath,
-          // name: fileName,
-          // type: type,
-          // ownerName: Auth.user.attributes.email,
-          // filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
-        };
-        API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
+        API.graphql(graphqlOperation(deleteFile, {input: {id: file.id}}));
       });
-    // } catch(error) {
-      // alert('remove error');
+    } catch(error) {
+      alert('remove error', error);
     }
+    fetchFiles();
   }
 
   return (
@@ -124,7 +117,10 @@ function App() {
                 <div className="column"><div className="fileName">{file.name}</div></div>
                 <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
                 <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
-                <div className="column"><IconButton aria-label = "delete" onClick = {() => removeFile(file)}><DeleteIcon/></IconButton></div>
+                {file.type === "video" ? (
+                  <div className="column"><IconButton aria-label = "delete" onClick = {() => removeFile(file)}><DeleteIcon/></IconButton></div>
+                  ): <div className="column"></div>
+                }
                 <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
                       {file.type === "video" ? 
                         (
