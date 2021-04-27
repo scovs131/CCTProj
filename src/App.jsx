@@ -116,8 +116,8 @@ function App() {
                 </div>
               {
                 videoPlaying === idx ? (
-                  <div>
-                    <ReactHlsPlayer src = {videoSrc} autoPlay={false} controls={true} maxwidth="70%" /*height="auto"*//>
+                  <div style={{ maxWidth: '50%' }}>
+                    <ReactHlsPlayer src = {videoSrc} autoPlay={false} controls={true} /*maxwidth="70%" height="auto"*//>
                   </div>
                 ) : null
               }
