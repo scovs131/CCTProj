@@ -82,14 +82,14 @@ function App() {
   }
 
   const removeFile = async (file) => {
-    // alert(file.name);
+    alert(file.filePath);
     try {
-      await Storage.remove(file.name);
+      await Storage.remove(file.filePath);
     } catch(error) {
       alert('remove error');
     }
-
   }
+
   return (
     <div className="App">
       <header className="App-header">
