@@ -84,19 +84,19 @@ function App() {
   const removeFile = async (file) => {
     alert(file.filePath);
     // try {
-    //   await Storage.remove(file.filePath).then(() => {
-    //     const deleteFileInput = {
-    //       id: file.filePath,
-    //       // name: fileName,
-    //       // type: type,
-    //       // ownerName: Auth.user.attributes.email,
-    //       // filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
-    //     };
-    //     API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
-    //   });
+      await Storage.remove(file.filePath).then(() => {
+        const deleteFileInput = {
+          id: file.filePath,
+          // name: fileName,
+          // type: type,
+          // ownerName: Auth.user.attributes.email,
+          // filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
+        };
+        API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
+      });
     // } catch(error) {
-    //   alert('remove error');
-    // }
+      // alert('remove error');
+    }
   }
 
   return (
