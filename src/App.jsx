@@ -84,7 +84,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h3>{Auth.user.attributes.name}</h3>
+        <h3>{Auth.user.attributes.email}</h3>
         <AmplifySignOut />
       </header>
       <div className="fileList">
@@ -117,7 +117,7 @@ function App() {
               {
                 videoPlaying === idx ? (
                   <div>
-                    <ReactHlsPlayer src = {videoSrc} autoPlay={false} controls={true} width="auto" height="auto"/>
+                    <ReactHlsPlayer src = {videoSrc} autoPlay={false} controls={true} maxwidth="70%" /*height="auto"*//>
                   </div>
                 ) : null
               }
