@@ -81,13 +81,15 @@ function App() {
 
   }
 
-  // const removeFile = async (idx) => {
-  //   try {
-  //     const file = files[idx];
+  const removeFile = async (file) => {
+    try {
+      await Storage.remove(file.name);
 
-  //   }
+    } catch(error) {
+      console.log('error removing file')
+    }
 
-  // }
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -106,14 +108,14 @@ function App() {
               <AddIcon />
             </IconButton>
         }
-        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*/.sort((a,b) => a.updatedAt - b.updatedAt).map( (file, idx) => {
+        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*//*.sort((a,b) => a.updatedAt - b.updatedAt)*/.map( (file, idx) => {
           return (
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
                 <div className="column"><div className="fileName">{file.name}</div></div>
                 <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
                 <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
-                <div className="column"><IconButton aria-label = "delete"><DeleteIcon/></IconButton></div>
+                <div className="column"><IconButton aria-label = "delete" onClick = {() => removeFile(file)}><DeleteIcon/></IconButton></div>
                 <div className="column"><IconButton aria-label = "download" onClick= {() => downloadFile(idx)}>
                       {file.type === "video" ? 
                         (
