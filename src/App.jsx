@@ -106,7 +106,7 @@ function App() {
               <AddIcon />
             </IconButton>
         }
-        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*//*.sort((a,b) => a.updatedAt - b.updatedAt).*/.map( (file, idx) => {
+        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*/.sort((a,b) => a.updatedAt - b.updatedAt).map( (file, idx) => {
           return (
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
