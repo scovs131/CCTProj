@@ -84,19 +84,19 @@ function App() {
   const removeFile = async (file) => {
     // alert(file.filePath);
     // try {
-      await Storage.remove(file.filePath).then(() => {
-        const deleteFileInput = {
-          id: file.filePath,
+      await Storage.remove(file.filePath);
+      const deleteFileInput = {
+        id: file.filePath,
           // name: fileName,
           // type: type,
           // ownerName: Auth.user.attributes.email,
           // filePath: `${uuid}.${fileExtension[fileExtension.length - 1]}`,
-        };
-        API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
-      });
+      };
+      API.graphql(graphqlOperation(deleteFile, {input: deleteFileInput}));
+
     // } catch(error) {
       // alert('remove error');
-    }
+  }
 
   return (
     <div className="App">
@@ -116,7 +116,7 @@ function App() {
               <AddIcon />
             </IconButton>
         }
-        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*//*.sort((a,b) => a.updatedAt - b.updatedAt)*/.map( (file, idx) => {
+        { files/*.filter((file) => file.ownerName.indexOf(Auth.attributes.email) != -1)*/.sort((a,b) => a.fi - b.updatedAt).map( (file, idx) => {
           return (
             <Paper variant="outlined" elevation={2} key = {`file${idx}`}>
               <div className="fileCard">
