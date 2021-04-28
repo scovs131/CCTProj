@@ -117,7 +117,7 @@ function App() {
                 <div className="column"><div className="fileName">{file.name}</div></div>
                 <div className="column"><div className="fileOwner">{file.ownerName}</div></div>
                 <div className="column"><div className="fileUpdated">{moment(file.updatedAt).format("dddd, MMM DD at HH:mm a")}</div></div>
-                {file.type !== "video" ? (
+                {file.type !== "video" && file.ownerName === Auth.user.attributes.email ? (
                   <div className="column"><IconButton aria-label = "delete" onClick = {() => removeFile(file)}><DeleteIcon/></IconButton></div>
                   ): <div className="column"></div>
                 }
